@@ -22,9 +22,11 @@ This will generate the following HTML:
 
 The rendering result:
 
+<p>
 <span class="ruby-line">
   <ruby>歩<rp>(</rp><rt>ある</rt><rp>)</rp></ruby>く
 </span>
+</p>
 
 You can combine adjacent ruby text like this:
 ```markdown
