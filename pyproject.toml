@@ -1,12 +1,12 @@
 [project]
 name = "lektor-markdown-ruby-blocks"
-version = "0.0.1"
+version = "0.1.0"
 authors = [
   { name="25349023", email="25349023.qq@gmail.com" },
 ]
 description = "Add supports to ruby blocks syntax in Markdown"
 readme = "README.md"
-license = { file="LICENSE" }
+license = { text="MIT License" }
 requires-python = ">=3.6"
 classifiers = [
     "Programming Language :: Python :: 3",

@@ -108,12 +108,6 @@ This will generate the following HTML pieces:
 </span>
 ```
 
-Rendered output:
-
-<span class="ruby-line" style="color: #44cc00">
-  <ruby>歩<rp>(</rp><rt>ある</rt><rp>)</rp></ruby>く
-</span>
-
 ### Raw lines
 Prepend `% ` &nbsp;to create a raw line. Raw lines are not converted to ruby tags, 
 not affected by the color settings, and have a different class.
