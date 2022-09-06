@@ -1,6 +1,6 @@
 [project]
 name = "lektor-markdown-ruby-blocks"
-version = "0.2.1"
+version = "0.2.2"
 authors = [
     { name = "25349023", email = "25349023.qq@gmail.com" },
 ]
