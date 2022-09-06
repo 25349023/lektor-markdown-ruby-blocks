@@ -1,18 +1,21 @@
 [project]
 name = "lektor-markdown-ruby-blocks"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
-  { name="25349023", email="25349023.qq@gmail.com" },
+    { name = "25349023", email = "25349023.qq@gmail.com" },
 ]
 description = "Add supports to ruby blocks syntax in Markdown"
 readme = "README.md"
-license = { text="MIT License" }
+license = { text = "MIT License" }
 requires-python = ">=3.6"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+
+[project.entry-points."lektor.plugins"]
+markdown-ruby-blocks = 'lektor_markdown_ruby_blocks:RubyBlockPlugin'
 
 [project.urls]
 "Homepage" = "https://github.com/25349023/lektor-markdown-ruby-blocks"
