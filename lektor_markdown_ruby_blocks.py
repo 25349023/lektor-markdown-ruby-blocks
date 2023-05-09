@@ -1,3 +1,5 @@
+""" Plugin that introduces a new syntax to Markdown for generating HTML ruby tags. """
+
 import re
 from collections import namedtuple
 
@@ -9,7 +11,7 @@ rb_block_pattern = re.compile(r'^\^\^(#[0-9a-fA-F]{6,8})?\n(.*)\^\^$', flags=re.
 ruby_pattern = re.compile(r'\((.+?)\)\[(.+?)]')
 
 
-def convert(base, ruby):
+def _convert(base, ruby):
     return f'<ruby>{base}<rp>(</rp><rt>{ruby}</rt><rp>)</rp></ruby>'
 
 
@@ -17,7 +19,10 @@ Conversion = namedtuple('Conversion', 'span text')
 
 
 class RubyBlockMixin:
+    """ Mixin class for parsing markdown and generate ruby tags """
+
     def paragraph(self, text):
+        """ Parsing Markdown paragraph """
         match = rb_block_pattern.match(text)
         if match is None:
             return super().paragraph(text)
@@ -40,11 +45,11 @@ class RubyBlockMixin:
     def _rubify_line(self, line, color, ignore=False):
         if line == "-##-":
             return ''
-        elif ignore:
+        if ignore:
             return f'<span class="non-ruby-line">{line}</span>'
 
-        cvts = self._collect_convertions(line)
-        for (start, end), rt in cvts[::-1]:
+        conversions = self._collect_conversions(line)
+        for (start, end), rt in conversions[::-1]:
             line = line[:start] + rt + line[end:]
 
         if color is not None:
@@ -54,18 +59,21 @@ class RubyBlockMixin:
 
         return rb_line
 
-    def _collect_convertions(self, line):
+    def _collect_conversions(self, line):
         replacement = []
         for match in ruby_pattern.finditer(line):
             base, ruby = match[1].split('|'), match[2].split('|')
-            cvt_text = ''.join(convert(b, r) for b, r in zip(base, ruby))
+            cvt_text = ''.join(_convert(b, r) for b, r in zip(base, ruby))
             replacement.append(Conversion(match.span(), cvt_text))
         return replacement
 
 
 class RubyBlockPlugin(Plugin):
-    name = 'Markdown Ruby Block'
-    description = 'Add supports to ruby blocks syntax in Markdown'
+    """ Introduces a new syntax to Markdown for generating HTML ruby tags """
 
-    def on_markdown_config(self, config, **extra):
+    name = 'Markdown Ruby Block'
+    description = __doc__
+
+    def on_markdown_config(self, config, **_extra):
+        """ Add ruby-syntax handler to the renderer """
         config.renderer_mixins.append(RubyBlockMixin)

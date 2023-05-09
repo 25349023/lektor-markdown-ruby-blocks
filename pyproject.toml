@@ -1,10 +1,10 @@
 [project]
 name = "lektor-markdown-ruby-blocks"
-version = "0.2.3"
+version = "0.2.4"
 authors = [
     { name = "25349023", email = "25349023.qq@gmail.com" },
 ]
-description = "Add supports for ruby blocks syntax in Markdown"
+description = "Introduces a new syntax to Markdown for generating HTML ruby tags"
 long_description = { file = "README.md" }
 long_description_content_type = "text/markdown"
 keywords = ["Lektor", "plugin", "Markdown", "HTML", "ruby-tag"]
